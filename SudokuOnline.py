@@ -17,17 +17,17 @@ sudoku = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
           [0, 0, 0, 0, 0, 0, 0, 0, 0],
           [0, 0, 0, 0, 0, 0, 0, 0, 0]]  # empty array in start
 
-# y pixel coordinates of its sudoku cell in screenshot
-yList = [151, 194, 237, 282, 323, 366, 411, 454, 497, 542]
-# x pixel coordinates of its sudoku cell in screenshot
-xList = [733, 776, 819, 863, 906, 949, 993, 1036, 1079, 1122]
+
+LeftUpCorner = [731, 152] # set Coordinates for the top Right 
+RightBottomCorner = [1125, 537]
+xCellSize = (RightBottomCorner[0] - LeftUpCorner[0]) / 9
+yCellSize = (RightBottomCorner[1] - LeftUpCorner[1]) / 9
+
+e = 5 # crop each side by e pixels
 for i in range(9):
     for j in range(9):
-        digit = image[yList[i]+2:yList[i+1]-2,
-                      xList[j]+2:xList[j+1]-2]  # get each digit
-        cv2.imwrite("Desktop/sudoku/png/img"+str(i)+str(j) +
-                    ".png", digit)  # save as a new photo
-
+        digit = image[int(LeftUpCorner[1]+j*yCellSize+e):int(LeftUpCorner[1]+(j+1)*yCellSize-e), int(LeftUpCorner[0]+i*xCellSize+e):int(LeftUpCorner[0]+(i+1)*xCellSize - e)]  # get each digit
+        cv2.imwrite("Desktop/sudoku/png/img"+str(j)+str(i)+".png", digit)  # save as a new photo
 
 def isint(s):  # check if the character in the cell is number
     try:
@@ -69,11 +69,14 @@ def solve():   # solve sudoku
     print()
     print()
     print()
+    input("go?")
+    time.sleep(2)
     for i in range(9):
         for j in range(9):  # write results back to the website
             if i != 0 or j != 0:
                 pyautogui.press('right')
             pyautogui.write(str(sudoku[i][j]))
+            #time.sleep(2)
 
 
 for i in range(9):
