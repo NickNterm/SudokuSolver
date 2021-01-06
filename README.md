@@ -27,5 +27,6 @@ Then after the solution is printed is the terminal like:
 7  4  2  5  8  9  1  3  6 
 ```
 
-## SudokuOnline.py
+## Sudoku Online.py
 This script reads a sudoku from the site https://www.livesudoku.com/ and then it insert it writes it in the form a two dimendional array. Then it solves this array and uses numpad and arrow keys in order to solve the sudoku in the website.
+In order to work properly you have to set LeftUpCorner, RightDownCorner. To do that you can get a screenshot of the game and find the coordinates of the pixels in topleft and bottomright corners. Then change the values accordingly and Have Fun.
